@@ -1,9 +1,9 @@
 # -*- coding:gbk -*-
 from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
 from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot
 from numpy import ndarray
-from encryptor import encrypt_image_by_key
+from encryptor import encrypt, encrypt_image_by_key
 from transition import percent_func_gen
 import os
 import cv2
@@ -11,14 +11,14 @@ import threading
 
 UI_PATH = "encrypt.ui"
 
-#TODO：enter键功能
-class Main(QWidget):
+
+class MainWindow(QWidget):
     image_show_signal = pyqtSignal(ndarray)
     set_arrow_cursor_signal = pyqtSignal()
-    set_wait_cursor_signal=pyqtSignal()
+    set_wait_cursor_signal = pyqtSignal()
 
     def __init__(self):
-        super(Main, self).__init__()
+        super(MainWindow, self).__init__()
         # 加载UI
         self.main_win = uic.loadUi(UI_PATH)
         # 连接按钮信号
@@ -26,6 +26,7 @@ class Main(QWidget):
         self.image_show_signal.connect(self.image_show)
         self.set_arrow_cursor_signal.connect(self.set_arrow_cursor)
         self.set_wait_cursor_signal.connect(self.set_wait_cursor)
+        self.main_win.lineEdit.returnPressed.connect(self.encrypt)
 
     def encrypt(self):
         def run():
@@ -64,7 +65,7 @@ class Main(QWidget):
                     self.image_show_signal.emit(img_show)
                     cv2.waitKey(load_f)
                 self.set_arrow_cursor_signal.emit()
-        
+
         threading.Thread(target=run).start()
 
     @pyqtSlot(ndarray)
@@ -74,7 +75,7 @@ class Main(QWidget):
     @pyqtSlot()
     def set_arrow_cursor(self):
         self.main_win.setCursor(Qt.ArrowCursor)
-        
+
     @pyqtSlot()
     def set_wait_cursor(self):
         self.main_win.setCursor(Qt.WaitCursor)
@@ -82,6 +83,6 @@ class Main(QWidget):
 
 if __name__ == '__main__':
     app = QApplication([])
-    main = Main()
+    main = MainWindow()
     main.main_win.show()
     app.exec_()
