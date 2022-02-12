@@ -11,7 +11,7 @@ import threading
 
 UI_PATH = "encrypt.ui"
 
-
+#TODO£ºenter¼ü¹¦ÄÜ
 class Main(QWidget):
     image_show_signal = pyqtSignal(ndarray)
     set_arrow_cursor_signal = pyqtSignal()
