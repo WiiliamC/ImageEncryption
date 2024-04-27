@@ -3,13 +3,13 @@ import cv2
 
 def percent_func_gen(a, b, time, n, mode):
     """
-    ¸ß´Î¶àÏîÊ½¼ÆËãº¯ÊıÉú³ÉÆ÷
-    :param a: ÆğÊ¼°Ù·Ö±È£¨Èç£º0.25£©
-    :param b: ½áÊø°Ù·Ö±È
-    :param time: ¶¯»­³ÖĞøÊ±¼ä
-    :param n: ¶àÏîÊ½´ÎÊı
-    :param mode: faster£¨Ô½À´Ô½¿ì£©¡¢slower£¨Ô½À´Ô½Âı£©
-    :return: Ã¿¸öÊ±¿Ìµ½´ï°Ù·Ö±ÈµÄ¼ÆËãº¯Êı
+    é«˜æ¬¡å¤šé¡¹å¼è®¡ç®—å‡½æ•°ç”Ÿæˆå™¨
+    :param a: èµ·å§‹ç™¾åˆ†æ¯”ï¼ˆå¦‚ï¼š0.25ï¼‰
+    :param b: ç»“æŸç™¾åˆ†æ¯”
+    :param time: åŠ¨ç”»æŒç»­æ—¶é—´
+    :param n: å¤šé¡¹å¼æ¬¡æ•°
+    :param mode: fasterï¼ˆè¶Šæ¥è¶Šå¿«ï¼‰ã€slowerï¼ˆè¶Šæ¥è¶Šæ…¢ï¼‰
+    :return: æ¯ä¸ªæ—¶åˆ»åˆ°è¾¾ç™¾åˆ†æ¯”çš„è®¡ç®—å‡½æ•°
     """
     if mode == "slower":
         a, b = b, a
@@ -25,12 +25,12 @@ def percent_func_gen(a, b, time, n, mode):
 
 
 if __name__ == '__main__':
-    '''¶ÁÈëÍ¼Ïñ'''
+    '''è¯»å…¥å›¾åƒ'''
     img1 = cv2.imread(r"img\love.bmp")
     img2 = cv2.imread(r"img\love.jpg")
     rows, cols = img1.shape[:2]
 
-    '''ÌØĞ§Õ¹Ê¾'''
+    '''ç‰¹æ•ˆå±•ç¤º'''
     load_f = 20
     tim = 0.5
     percent_func1 = percent_func_gen(a=1, b=0, time=tim, n=1, mode="null")
@@ -46,6 +46,6 @@ if __name__ == '__main__':
         cv2.imshow("show", img_show)
         cv2.waitKey(load_f)
 
-    '''¹Ø±Õ´°¿Ú'''
+    '''å…³é—­çª—å£'''
     cv2.waitKey(1500)
     cv2.destroyAllWindows()

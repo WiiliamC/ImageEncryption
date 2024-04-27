@@ -19,9 +19,9 @@ class MainWindow(QWidget):
 
     def __init__(self):
         super(MainWindow, self).__init__()
-        # 加载UI
+        # 鍔犺浇UI
         self.main_win = uic.loadUi(UI_PATH)
-        # 连接按钮信号
+        # 杩炴帴鎸夐挳淇″彿
         self.main_win.pushButton.clicked.connect(self.encrypt)
         self.image_show_signal.connect(self.image_show)
         self.set_arrow_cursor_signal.connect(self.set_arrow_cursor)

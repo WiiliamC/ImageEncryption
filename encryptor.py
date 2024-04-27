@@ -4,14 +4,14 @@ import cv2
 
 
 def encrypt_image_by_key(image, key):
-    """°´ÕÕÃÜ³×¶ÔÍ¼Ïñ½øĞĞ¼ÓÃÜ
+    """æŒ‰ç…§å¯†åŒ™å¯¹å›¾åƒè¿›è¡ŒåŠ å¯†
 
     Args:
-        image (str or ndarray): Í¼Æ¬¾ØÕó»òÂ·¾¶
-        key (str): ÃÜ³×
+        image (str or ndarray): å›¾ç‰‡çŸ©é˜µæˆ–è·¯å¾„
+        key (str): å¯†åŒ™
 
     Returns:
-        ndarray: ¼ÓÃÜºóµÄÍ¼Ïñ
+        ndarray: åŠ å¯†åçš„å›¾åƒ
     """
     if isinstance(image, str):
         image = cv2.imread(image)
@@ -21,13 +21,13 @@ def encrypt_image_by_key(image, key):
 
 
 def gene_x0(key):
-    """°´ÕÕÃÜ³×Éú³É»ìãçĞòÁĞµÄ³õÖµ
+    """æŒ‰ç…§å¯†åŒ™ç”Ÿæˆæ··æ²Œåºåˆ—çš„åˆå€¼
 
     Args:
-        key (str): ÃÜ³×
+        key (str): å¯†åŒ™
 
     Returns:
-        int: »ìãçĞòÁĞµÄ³õÖµ
+        int: æ··æ²Œåºåˆ—çš„åˆå€¼
     """
     x0 = 0
     for i, c in enumerate(key):
@@ -38,15 +38,15 @@ def gene_x0(key):
 
 
 def gene_logistic_list(x0, u, l):
-    """Éú³É»ìãçĞòÁĞ
+    """ç”Ÿæˆæ··æ²Œåºåˆ—
 
     Args:
-        x0 (float): ³õÖµ£¬0 < x0 < 1
-        u (float): ÏµÊı£¬3.57 < u < 4
-        l (int): ³¤¶È
+        x0 (float): åˆå€¼ï¼Œ0 < x0 < 1
+        u (float): ç³»æ•°ï¼Œ3.57 < u < 4
+        l (int): é•¿åº¦
 
     Returns:
-        list: »ìãçĞòÁĞ
+        list: æ··æ²Œåºåˆ—
     """
     assert 0 < x0 < 1 and 3.57 < u < 4 and isinstance(l, int)
     logistic_list = []
@@ -57,13 +57,13 @@ def gene_logistic_list(x0, u, l):
 
 
 def encrypt(image, x0, u):
-    """Ê¹ÓÃ»ìãçĞòÁĞ¶ÔÍ¼Ïñ¼ÓÃÜ£¬»ìãçĞòÁĞ£ºx(k+1)= u*x(k)*(1-x(k))
+    """ä½¿ç”¨æ··æ²Œåºåˆ—å¯¹å›¾åƒåŠ å¯†ï¼Œæ··æ²Œåºåˆ—ï¼šx(k+1)= u*x(k)*(1-x(k))
 
     Args:
-        x0 (float): ³õÖµ£¬0 < x0 < 1
-        u (float): ÏµÊı£¬3.57 < u < 4
+        x0 (float): åˆå€¼ï¼Œ0 < x0 < 1
+        u (float): ç³»æ•°ï¼Œ3.57 < u < 4
     Returns:
-        ndarray: ¼ÓÃÜºóµÄÍ¼Ïñ
+        ndarray: åŠ å¯†åçš„å›¾åƒ
     """
     logistic_list = gene_logistic_list(
         x0, u, image.shape[0]*image.shape[1]*3)
@@ -74,19 +74,19 @@ def encrypt(image, x0, u):
 
 
 def decrypt(image, x0, u):
-    """Ê¹ÓÃ»ìãçĞòÁĞ¶ÔÍ¼Ïñ½âÃÜ£¬»ìãçĞòÁĞ£ºx(k+1)= u*x(k)*(1-x(k))
+    """ä½¿ç”¨æ··æ²Œåºåˆ—å¯¹å›¾åƒè§£å¯†ï¼Œæ··æ²Œåºåˆ—ï¼šx(k+1)= u*x(k)*(1-x(k))
 
     Args:
-        x0 (float): ³õÖµ£¬0 < x0 < 1
-        u (float): ÏµÊı£¬3.57 < u < 4
+        x0 (float): åˆå€¼ï¼Œ0 < x0 < 1
+        u (float): ç³»æ•°ï¼Œ3.57 < u < 4
     Returns:
-        ndarray: ½âÃÜºóµÄÍ¼Ïñ
+        ndarray: è§£å¯†åçš„å›¾åƒ
     """
     return encrypt(image, x0, u)
 
 
 if __name__ == "__main__":
-    x0 = gene_x0("ÎÒ°®Äã")
+    x0 = gene_x0("æˆ‘çˆ±ä½ ")
     print("x0 =", x0)
     source_image = cv2.imread(r"img\girl.jpg")
     cv2.imshow("source image", source_image)
