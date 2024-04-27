@@ -1,4 +1,3 @@
-# -*- coding:gbk -*-
 import numpy as np
 import cv2
 
@@ -86,9 +85,9 @@ def decrypt(image, x0, u):
 
 
 if __name__ == "__main__":
-    x0 = gene_x0("我爱你")
+    x0 = gene_x0("secret key")
     print("x0 =", x0)
-    source_image = cv2.imread(r"img\girl.jpg")
+    source_image = cv2.imread(R"img\demo.jpg")
     cv2.imshow("source image", source_image)
 
     encoded_image = encrypt(source_image, x0, 3.999)

@@ -1,4 +1,3 @@
-# -*- coding:gbk -*-
 import cv2
 
 def percent_func_gen(a, b, time, n, mode):

@@ -1,4 +1,3 @@
-# -*- coding:gbk -*-
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
 from PyQt5.QtCore import Qt, pyqtSignal, pyqtSlot
